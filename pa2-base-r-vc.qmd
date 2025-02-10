@@ -75,6 +75,8 @@ punctuation <- c(".", ",", "!", "?", "'", '"', "(", ")", " ", "-", ";", ":")
 2.  Make **one** long **vector** containing all the symbols.
 
 ```{r}
+#my_symbols <- (lower_case, upper_case, punctuation)
+
 my_symbols <- c(lower_case, upper_case, punctuation)
 # Edit: I added a "c" before parenthesis to generate a vector called my_symbols
 ```
@@ -92,13 +94,20 @@ my_symbols <- data.frame(symbol = my_symbols)
 4.  Find the total number of symbols we have in our data frame.
 
 ```{r}
-len <- length(my_symbols)
+#len <- length(my_symbols)
+
+len <- length(my_symbols$symbol)
+# added $symbol, to specify columns unique values that the length function should count. There are a total of 64 (64L) unique values/characters.
+
+#Note: len <- length(my_symbols) ; originally only counted the length (or #) of columns (1L).
 ```
 
 5.  Create a new variable in your dataframe that assigns a number to each symbol.
 
 ```{r}
-my_symbols%Num <- 1:len
+#my_symbols%Num <- 1:len
+
+my_symbols$Num <- 1:len
 ```
 
 <!-- Developer Stage your Changes, Commit, and Push to the Git Repository-->
@@ -122,7 +131,10 @@ By altering this top secret set of numbers, you will be able to create a message
 
 ```{r}
 
-ts6 <- top_secret ___________
+#ts6 <- top_secret ___________
+
+ts6 <- top_secret + 14
+
 
 ```
 
@@ -130,20 +142,26 @@ ts6 <- top_secret ___________
 
 ```{r}
 
-ts7 <- ts6___________
+#ts7 <- ts6___________
+
+ts7 <- (ts6*18) - 257
 
 ```
 
 8.  Use the `exp()` function to exponentiate every number.
 
 ```{r}
-ts8 <- ____(ts7)
+#ts8 <- ____(ts7)
+
+ts8 <- exp(ts7)
 ```
 
 9.  Square every number.
 
 ```{r}
-ts9 <- 
+#ts9 <- 
+
+ts9 <- ts8^2
 ```
 
 **Checkpoint:** Headquarters has informed you that at this stage of decoding, there should be 352 numbers in the secret message that are below 17. Write the code to verify that this is true for your `top_secret` object!
@@ -153,8 +171,14 @@ ts9 <-
 ```{r}
 # Write code to verify that there are 352 numbers with values **below** 17
 
-___(ts9 < 17)
+#___(ts9 < 17)
 
+ts9 <- data.frame(ts9)
+#as.list(ts9)
+
+ts9$col <- sort(ts9 < 17) # Make new column with sort function issueing values into sepries of true/false statements
+
+      
 ```
 
 <!-- Developer Stage your Changes, Commit, and Push to the Git Repository-->
