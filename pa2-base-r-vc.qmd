@@ -3,7 +3,7 @@ title: "Practice Activity 2: Break the Code"
 format: gfm
 editor: source
 execute: 
-  echo: true
+  echo: false
   eval: false
   code-fold: true
 ---

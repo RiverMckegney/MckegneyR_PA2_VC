@@ -80,55 +80,23 @@ label and comment.
     letters, and some punctuation marks. add a label that indicate this
     code chunk creates the vectors of letters and punctuation.
 
-``` r
-lower_case <- c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
-                "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z")
-
-upper_case <- c("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
-                "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z")
-# Edit: I added a comma after the letter "H".
-
-punctuation <- c(".", ",", "!", "?", "'", '"', "(", ")", " ", "-", ";", ":")
-```
+<!-- -->
 
 2.  Make **one** long **vector** containing all the symbols.
 
-``` r
-#my_symbols <- (lower_case, upper_case, punctuation)
-
-my_symbols <- c(lower_case, upper_case, punctuation)
-# Edit: I added a "c" before parenthesis to generate a vector called my_symbols
-```
+<!-- -->
 
 3.  Turn the `my_symbols` vector into a data frame, with one column
     named “symbol”.
 
-``` r
-#my_symbols <- dataframe(symbol = my_symbols)
-
-my_symbols <- data.frame(symbol = my_symbols)
-# Edit: I changed dataframe to data.frame, which created a dataframe with the my_symbols data into a single column named symbol.
-```
+<!-- -->
 
 4.  Find the total number of symbols we have in our data frame.
 
-``` r
-#len <- length(my_symbols)
-
-len <- length(my_symbols$symbol)
-# added $symbol, to specify columns unique values that the length function should count. There are a total of 64 (64L) unique values/characters.
-
-#Note: len <- length(my_symbols) ; originally only counted the length (or #) of columns (1L).
-```
+<!-- -->
 
 5.  Create a new variable in your dataframe that assigns a number to
     each symbol.
-
-``` r
-#my_symbols%Num <- 1:len
-
-my_symbols$Num <- 1:len
-```
 
 <!-- Developer Stage your Changes, Commit, and Push to the Git Repository-->
 <!-- Now change roles (Developer becomes Coder) -->
@@ -138,46 +106,23 @@ my_symbols$Num <- 1:len
 
 This chunk will load up the encoded secret message as a vector:
 
-``` r
-top_secret <- read_csv("https://www.dropbox.com/s/k72h1zewk4gtqep/PA_Secret_Code?dl=1", 
-                       col_names = FALSE)$X1
-```
-
 By altering this top secret set of numbers, you will be able to create a
 message. Write your own code to complete the steps, **in the order
 given** below.
 
 6.  Add 14 to every number.
 
-``` r
-#ts6 <- top_secret ___________
-
-ts6 <- top_secret + 14
-```
+<!-- -->
 
 7.  Multiply every number by 18, then subtract 257.
 
-``` r
-#ts7 <- ts6___________
-
-ts7 <- (ts6*18) - 257
-```
+<!-- -->
 
 8.  Use the `exp()` function to exponentiate every number.
 
-``` r
-#ts8 <- ____(ts7)
-
-ts8 <- exp(ts7)
-```
+<!-- -->
 
 9.  Square every number.
-
-``` r
-#ts9 <- 
-
-ts9 <- ts8^2
-```
 
 **Checkpoint:** Headquarters has informed you that at this stage of
 decoding, there should be 352 numbers in the secret message that are
@@ -189,17 +134,6 @@ compare an object to a number and R will give you a vector of TRUEs and
 FALSEs based on whether the comparison is / is not met. You can then use
 these TRUEs and FALSEs as numbers, since TRUE = 1 and FALSE = 0 in R
 land.
-
-``` r
-# Write code to verify that there are 352 numbers with values **below** 17
-
-#___(ts9 < 17)
-
-# Heres a way I found:
-#sort(ts9 < 17)  
-
-sum(ts9 <17)
-```
 
 <!-- Developer Stage your Changes, Commit, and Push to the Git Repository-->
 <!-- Now change roles (Developer becomes Coder) -->
@@ -222,59 +156,28 @@ Next, carry out the following steps:
 
 10. Turn your vector of numbers into a matrix with 5 columns.
 
-``` r
-#ts_mat <- ______(ts9, ncol = _____)
-
-ts_mat <- matrix(ts9, ncol = 5) 
-```
+<!-- -->
 
 11. Separately from your top secret numbers, create a vector of all the
     even numbers between 1 and 382. Name it “evens”. That is, “evens”
     should contain 2, 4, 6, 8 …, 382.
 
-``` r
-#evens <- seq(from = __ , to = __ , by = __)
-
-evens <- seq(from = 2 , to = 382 , by = 2)
-```
+<!-- -->
 
 12. Subtract the “evens” vector from the first column of your secret
     message matrix.
 
-``` r
-#ts_mat[, 1] <- ts_mat[, ___] - evens
-
-ts_mat[, 1] <- ts_mat[, 1] - evens
-```
+<!-- -->
 
 13. Subtract 100 from all numbers 18-24th rows of the 3rd column.
 
-``` r
-#ts_mat[18:24, 3] <- ts_mat[____, ____] - ____
-
-ts_mat[18:24, 3] <- ts_mat[18:24, 3] - 100
-```
+<!-- -->
 
 14. Multiply all numbers in the 4th and 5th column by 2.
 
-``` r
-#ts_mat[, __:__] <- 
-
-# this does calculation fine, but does not save it back into dataframe ts_mat
-
-ts_mat[, 4:5] <- 2*(ts_mat[, 4:5]) 
-```
+<!-- -->
 
 15. Turn your matrix back into a vector.
-
-``` r
-#ts_vec <- ________(ts_mat)
-
-# Here something I did: Looks good
-#ts_vec <- c(ts_mat)
-
-ts_vec <- as.vector(ts_mat)
-```
 
 **Checkpoint:** Headquarters has informed you that at this stage of
 decoding, all numbers in indices 500 and beyond are below 100. Write the
@@ -283,48 +186,23 @@ code to verify that this is true for your `top_secret` object!
 *Hint:* Use a relational comparison similar to what you used in the last
 checkpoint, but here you will need to subset values from your vector!
 
-``` r
-# Write code to verify that indices 500 and beyond have values **below** 100
-#___(ts_vec[____:____] >= ____)
-
-#sort(ts_vec[500:955] >= 100)
-# All false
-
-sum((ts_vec[500:955] >= 100))
-# Value = zero, check confirmed (verified)
-```
-
 <!-- Developer Stage your Changes, Commit, and Push to the Git Repository-->
 <!-- Now change roles (Developer becomes Coder) -->
 <!-- The new Developer should PULL down the repository to make changes on their computer -->
 
 16. Take the square root of all numbers in indices 38 to 465.
 
-``` r
-#ts_vec[___:___] <- ____(ts_vec[38:465])
-
-ts_vec[38:465] <- sqrt(ts_vec[38:465])
-```
+<!-- -->
 
 17. Use the `round()` function to round all numbers to the nearest whole
     number.
 
-``` r
-#ts_vec <- 
-
-ts_vec <- round(ts_vec, digits = 0)
-```
+<!-- -->
 
 18. Replace all instances of the number 39 with 20. *Hint:* Step 18
     requires another relational comparison, but this time it is
     equality. Equality in R is checked with a double equal sign rather
     than a single equal sign
-
-``` r
-#ts_vec[ts_vec == ___ ] <- 
-
-ts_vec[ts_vec == 39 ] <- 20
-```
 
 **Checkpoint:** Headquarters has informed you that your final message
 should have 344 even numbers.
@@ -334,17 +212,6 @@ done much in R. Modulus is the operation you are interested in, where
 you are checking for whether the numbers are divisible by 2, with no
 remainder. See what you can find about modulus in R!
 
-``` r
-# Code to verify how many even numbers are in your top_secret vector
-
-#___(ts_vec %% 2 == 0)
-
-sort(ts_vec %% 2 == 0)
-# (613 - 957) = 344 even numbers
-
-sum(ts_vec %% 2 == 0)
-```
-
 <!-- Developer Stage your Changes, Commit, and Push to the Git Repository-->
 <!-- Now change roles (Developer becomes Coder) -->
 <!-- The new Developer should PULL down the repository to make changes on their computer -->
@@ -353,10 +220,6 @@ sum(ts_vec %% 2 == 0)
 
 Use your final vector of numbers as indices for my_symbols to discover
 the final message, by running the following code:
-
-``` r
-stringr::str_c(my_symbols$symbol[ts_vec], collapse = "")
-```
 
 Google the first line of this message, if you do not recognize it, to
 see what poem it is.
