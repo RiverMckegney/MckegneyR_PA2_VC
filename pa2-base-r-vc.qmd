@@ -5,6 +5,7 @@ editor: source
 execute: 
   echo: true
   eval: false
+  code-fold: true
 ---
 
 ```{r}
@@ -173,17 +174,10 @@ ts9 <- ts8^2
 
 #___(ts9 < 17)
 
-# This works
-sort(ts9 < 17)  
+# Heres a way I found:
+#sort(ts9 < 17)  
 
-# Here's another approach...
-# 1). 
-#ts9 <- data.frame(ts9)
-
-# 2). Make new column with sort function to change values into series of true/false statements
-#ts9$col <- sort(ts9 < 17)
-
-# 3). Count TRUE statements...
+sum(ts9 <17)
 
 ```
 
@@ -241,9 +235,9 @@ ts_mat[18:24, 3] <- ts_mat[18:24, 3] - 100
 #ts_mat[, __:__] <- 
 
 # this does calculation fine, but does not save it back into dataframe ts_mat
-ts_mat[, 4:5]*2 
 
-ts_mat[, 4:5]*2 <- ts_mat
+ts_mat[, 4:5] <- 2*(ts_mat[, 4:5]) 
+
 ```
 
 15. Turn your matrix back into a vector.
@@ -251,7 +245,10 @@ ts_mat[, 4:5]*2 <- ts_mat
 ```{r}
 #ts_vec <- ________(ts_mat)
 
-ts_vec <- c(ts_mat)
+# Here something I did: Looks good
+#ts_vec <- c(ts_mat)
+
+ts_vec <- as.vector(ts_mat)
 ```
 
 **Checkpoint:** Headquarters has informed you that at this stage of decoding, all numbers in indices 500 and beyond are below 100. Write the code to verify that this is true for your `top_secret` object!
@@ -262,8 +259,11 @@ ts_vec <- c(ts_mat)
 # Write code to verify that indices 500 and beyond have values **below** 100
 #___(ts_vec[____:____] >= ____)
 
-sort(ts_vec[500:955] >= 100)
+#sort(ts_vec[500:955] >= 100)
 # All false
+
+sum((ts_vec[500:955] >= 100))
+# Value = zero, check confirmed (verified)
 ```
 
 <!-- Developer Stage your Changes, Commit, and Push to the Git Repository-->
@@ -284,7 +284,7 @@ ts_vec[38:465] <- sqrt(ts_vec[38:465])
 ```{r}
 #ts_vec <- 
 
-ts_vec <- round(ts_vec)
+ts_vec <- round(ts_vec, digits = 0)
 
 ```
 
@@ -307,7 +307,9 @@ ts_vec[ts_vec == 39 ] <- 20
 #___(ts_vec %% 2 == 0)
 
 sort(ts_vec %% 2 == 0)
-# (495 + 6) - 955 = 466 even numbers
+# (613 - 957) = 344 even numbers
+
+sum(ts_vec %% 2 == 0)
 ```
 
 <!-- Developer Stage your Changes, Commit, and Push to the Git Repository-->
